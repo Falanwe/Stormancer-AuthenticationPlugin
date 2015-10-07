@@ -72,8 +72,9 @@ namespace Server.Users
         {
 
             var user = new User() { Id = id, UserData = userData };
+            var esClient = await Client();
+            await esClient.IndexAsync(user);
 
-            await (await Client()).IndexAsync(user);
             return user;
         }
 
