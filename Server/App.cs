@@ -17,6 +17,7 @@ namespace Server
             var userConfig = new Users.UserManagementConfig() { SceneIdRedirect = "main" /*Constants.MATCHMAKER_NAME*/ };
             userConfig.AuthenticationProviders.Add(new LoginPasswordAuthenticationProvider());
             userConfig.AuthenticationProviders.Add(new SteamAuthenticationProvider());
+
             builder.AddPlugin(new UsersManagementPlugin(userConfig));
         }
     }

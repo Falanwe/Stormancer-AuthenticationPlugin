@@ -62,6 +62,21 @@ namespace Stormancer.Authentication
         }
 
         /// <summary>
+        /// logs a user in using a steam session ticket.
+        /// </summary>
+        /// <param name="steamTicket">The stealm session ticket</param>   
+        /// <returns>A task returning the scene to be logged in.</returns>
+        /// <remarks>The returned scene is not connected yet. In most cases, you will want to add some routes to listen to before connecting to it.</remarks>
+        public Task<Scene> SteamLogin(string steamTicket)
+        {
+            return Login(new Dictionary<string, string>
+            {
+                { "provider", "steam" },
+                { "ticket", steamTicket}
+            });
+        }
+
+        /// <summary>
         /// Logs a user in using the provided authentication context.
         /// </summary>
         /// <param name="authenticationContext">A key/value dictionary with the values used by the authentication providers on the server.</param>
