@@ -103,6 +103,7 @@
     <Compile Include="Users\ISteamUserTicketAuthenticator.cs" />
     <Compile Include="Users\SteamAuthenticationProvider.cs" />
     <Compile Include="Users\SteamUserTicketAuthenticator.cs" />
+    <Compile Include="Users\SteamUserTicketAuthenticatorMockup.cs" />
     <Compile Include="Users\UsersManagementPlugin.cs" />
     <Compile Include="Users\AuthenticatorResult.cs" />
     <Compile Include="Users\IAuthenticationProvider.cs" />

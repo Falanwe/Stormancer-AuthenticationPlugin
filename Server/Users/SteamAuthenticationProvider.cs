@@ -30,7 +30,10 @@ namespace Server.Users
         public void AdjustScene(ISceneHost scene)
         {
             var steamConfig = scene.GetComponent<IEnvironment>().Configuration.steam;
-            _authenticator = new SteamUserTicketAuthenticator( steamConfig.apiKey, steamConfig.appId);
+
+            //_authenticator = new SteamUserTicketAuthenticator( steamConfig.apiKey, steamConfig.appId);
+
+            _authenticator = new SteamUserTicketAuthenticatorMockup();
         }
 
         public async Task<AuthenticationResult> Authenticate(Dictionary<string, string> authenticationCtx, IUserService userService)
