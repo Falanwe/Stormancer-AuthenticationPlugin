@@ -118,9 +118,9 @@ namespace Server.Users
     {
         public bool Success { get; set; }
 
-        public string Token { get; set; }
+        public string Token { get; set; } = "";
 
-        public string ErrorMsg { get; set; }
+        public string ErrorMsg { get; set; } = "";
     }
 
 

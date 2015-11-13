@@ -88,6 +88,14 @@ namespace Stormancer.Authentication
 
             var scene = await _authenticatorScene;
 
+
+            //var packet = await scene.RpcTask(LoginRoute, s =>
+            //{
+            //    scene.Host.Serializer().Serialize(authenticationContext, s);
+            //});
+
+            //var loginResult = packet.ReadObject<LoginResult>();
+
             var loginResult = await scene.RpcTask<Dictionary<string, string>, LoginResult>(LoginRoute, authenticationContext, Core.PacketPriority.HIGH_PRIORITY);
 
             if (!loginResult.Success)
