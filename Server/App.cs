@@ -12,20 +12,12 @@ namespace Server
     {
         public void Run(IAppBuilder builder)
         {
-
             builder.SceneTemplate("empty", scene => { });
 
             var userConfig = new Users.UserManagementConfig() { SceneIdRedirect = "main" /*Constants.MATCHMAKER_NAME*/ };
             userConfig.AuthenticationProviders.Add(new LoginPasswordAuthenticationProvider());
+            userConfig.AuthenticationProviders.Add(new SteamAuthenticationProvider());
             builder.AddPlugin(new UsersManagementPlugin(userConfig));
-
-            
-            //builder.AddGameScene();
-
-            //var admintest = builder.AdminPlugin("admintest", Stormancer.Server.Admin.AdminPluginHostVersion.V0_1).Name("admintest");
-            ////admintest.Get["/"] = ctx => "helloworld";
-
-            //var viewer = builder.AdminPlugin("viewer", Stormancer.Server.Admin.AdminPluginHostVersion.V0_1).Name("Viewer");
         }
     }
 }

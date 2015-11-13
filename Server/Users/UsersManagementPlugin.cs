@@ -7,6 +7,7 @@ using Stormancer.Core;
 using Stormancer.Plugins;
 using Stormancer.Server;
 using Stormancer;
+using Stormancer.Diagnostics;
 
 namespace Server.Users
 {
@@ -41,6 +42,8 @@ namespace Server.Users
         {
             scene.AddProcedure("login", async p =>
             {
+                scene.GetComponent<ILogger>().Log(LogLevel.Trace, "user.login", "Logging in an user.", null);
+
                 var accessor = scene.DependencyResolver.Resolve<Management.ManagementClientAccessor>();
                 var authenticationCtx = p.ReadObject<Dictionary<string, string>>();
                 var result = new LoginResult();
@@ -56,14 +59,18 @@ namespace Server.Users
 
                     if (authResult.Success)
                     {
+                        scene.GetComponent<ILogger>().Log(LogLevel.Trace, "user.login", "Authentication successful.", authResult);
+
                         result.Success = true;
                         var client = await accessor.GetApplicationClient();
-                        result.Token = await client.CreateConnectionToken(_config.OnRedirect(authResult), authResult.AuthenticatedUser);
+                        result.Token = await client.CreateConnectionToken(_config.OnRedirect(authResult), _config.UserDataSelector(authResult));
                         userService.SetUid(p.RemotePeer, authResult.AuthenticatedId);
                         break;
                     }
                     else
                     {
+                        scene.GetComponent<ILogger>().Log(LogLevel.Trace, "user.login", "Authentication failed.", authResult);
+
                         result.ErrorMsg = authResult.ReasonMsg;
                         break;
                     }
@@ -76,6 +83,14 @@ namespace Server.Users
                     }
                 }
 
+                if (result.Success)
+                {
+                    scene.GetComponent<ILogger>().Log(LogLevel.Trace, "user.login", "User logged in.", null);
+                }
+                else
+                {
+                    scene.GetComponent<ILogger>().Log(LogLevel.Trace, "user.login", "User failed to log in.", null);
+                }
                 p.SendValue(result);
             });
 

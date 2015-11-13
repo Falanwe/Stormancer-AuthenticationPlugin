@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -99,6 +100,9 @@
     <Compile Include="Database\ESClientFactory.cs" />
     <Compile Include="Management\ManagementPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\ISteamUserTicketAuthenticator.cs" />
+    <Compile Include="Users\SteamAuthenticationProvider.cs" />
+    <Compile Include="Users\SteamUserTicketAuthenticator.cs" />
     <Compile Include="Users\UsersManagementPlugin.cs" />
     <Compile Include="Users\AuthenticatorResult.cs" />
     <Compile Include="Users\IAuthenticationProvider.cs" />
@@ -110,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Assets\_config.json" />
     <None Include="packages.config" />
     <None Include="_app.json" />
   </ItemGroup>

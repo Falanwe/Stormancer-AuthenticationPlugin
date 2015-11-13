@@ -1,0 +1,6 @@
+﻿{
+  "steam": {
+    "apiKey": "myApiKey",
+    "appId": 42
+  }
+}

@@ -22,7 +22,7 @@ namespace Server.Users
 
         Task<User> GetUserByClaim(string provider, string claimPath, string login);
 
-        Task<User> CreateUser(string v, JObject userData);
+        Task<User> CreateUser(string uid, JObject userData);
 
         void SetUid(IScenePeerClient peer, string id);
     }
