@@ -10,7 +10,7 @@ namespace Server.Users
 {
     public class SteamUserTicketAuthenticator : ISteamUserTicketAuthenticator
     {
-        private const string AuthenticateUserTicketUri = "https://api.steampowered.com/ISteamUserAuth/AuthenticateUserTicket/v0001/";
+        private const string AuthenticateUserTicketUri = "https://partner.steam-api.com/ISteamUserAuth/AuthenticateUserTicket/v0001/";
 
         private readonly string _steamApiKey;
         private readonly uint _appSteamId;
